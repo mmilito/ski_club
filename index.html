@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SkiClub</title>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+
+  </head>
+  <body>
+    <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <!-- <div class="container"> -->
+        <div class="navbar-header">
+<!--           <button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> -->
+          <a class="navbar-brand" href="#">Eskimo Admin</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      <!-- </div> -->
+    </nav>
+
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class=" btn_top btn btn-default">Add New</button>
+    </div>
+
+    <div class="kid_container">
+        <div class="row template">
+          <div class="col-xs-3">
+            <span>First Name</span><input type="text" name="firstName" class="form-control" placeholder=".col-xs-3">
+          </div>
+          <div class="col-xs-3">
+            <span>Last Name</span><input type="text" name="lastName" class="form-control" placeholder=".col-xs-3">
+          </div>
+          <div class="col-xs-3">
+            <span>Ski Level</span><input type="text" name="skiLevel" class="form-control" placeholder=".col-xs-3">
+          </div>
+
+          <!-- Single button -->
+<!--           <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Green</a></li>
+              <li><a href="#">Blue</a></li>
+              <li><a href="#">Half Red</a></li>
+              <li><a href="#">Red</a></li>
+            </ul>
+          </div> -->
+
+
+          <div class="col-xs-3">
+            <span>SB Level</span><input type="text" name="sbLevel" class="form-control" placeholder=".col-xs-3">
+          </div>
+        </div>
+    </div>
+
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="main.js"></script>
+    
+    </div> <!-- /.container-->
+  </body>
+</html>

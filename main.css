@@ -1,0 +1,21 @@
+/*main.css for main.js for ski club app */
+
+.navbar-brand {
+	font-size: 24px;
+}
+.btn_top {
+	background-color: yellow;
+	display: block;
+	position: absolute;
+	margin-top: 75px;
+}
+.template {
+	display: none;
+}
+.not_a_template {
+	margin-top: 50px;
+}
+.col-xs-3 {
+	padding-right: 6px;
+	padding-left: 6px;
+}
