@@ -26,21 +26,18 @@ var Kid=function(firstName,lastName,skiLevel,sbLevel,dob){
 	this.skiLevel=new Ski(skiLevel);
 	this.sbLevel=new Snowboard(sbLevel);
 	this.dob=dob;
-
 };
 
 // page layout method for single kid
+// reflects kid data from db on screen
 Kid.prototype.renderKid=function(){
 	this.$el=$('.row').clone().attr('id',this.idNum);
 	this.$el.addClass('not_a_template').removeClass('row template');
-	//console.log(eskimoKids[i].firstName);
-	//console.log(this.$el.find('[name="firstName"]'));
 	this.$el.find('[name="firstName"]').attr('placeholder', this.firstName);
 	this.$el.find('[name="lastName"]').attr('placeholder', this.lastName);
-	this.$el.find('[name="skiLevel"]').attr('placeholder', this.skiLevel.level);
-	this.$el.find('[name="sbLevel"]').attr('placeholder', this.sbLevel.level);
+	this.$el.find('[name="skiLevel"]').children('[value='+this.skiLevel.level+']').attr('selected','selected');  //sets default closed value on SKI dropdown
+	this.$el.find('[name="sbLevel"]').children('[value='+this.sbLevel.level+']').attr('selected','selected');  //sets default closed value on SB dropdown
 	this.$el.find('[name="dob"]').attr('placeholder', this.dob);
-	//console.log(this.skiLevel);
 	$('.kid_container').append(this.$el);
 };
 
@@ -63,17 +60,16 @@ MainKidList.prototype.render=function(){
 	 }
 };
 
-
 //instantiate for testing
-var joeSmith=new Kid('Joe','Smith','green','','9/1/2001');
-var janeSmith=new Kid('Jane','Smith','blue','yellow','9/1/2001');
-var samJones=new Kid('Sam','Jones','','','9/1/2001');
-var pinkiePinkerton=new Kid('Pinkie','Pinkerton','','lime','9/1/2001');
-	//console.log(joeSmith);
+var joeSmith=new Kid('Joe','Smith','half-red','','9/1/2001');
+var janeSmith=new Kid('Jane','Smith','blue','low-orange','7/12/1997');
+var samJones=new Kid('Sam','Jones','','','2/4/2005');
+var pinkiePinkerton=new Kid('Pinkie','Pinkerton','','low-silver','6/22/2000');
+var louieWilkse=new Kid('Louie','Wilkse','','high-silver','10/15/1995');
+var emmaMilito=new Kid('Emma','Milito','maroon','','7/31/2003');
 
-	//console.log(eskimoKids);
-
-var eskimoKids=new MainKidList([joeSmith,janeSmith,samJones,pinkiePinkerton]);
+// create array to mimic db
+var eskimoKids=new MainKidList([joeSmith,janeSmith,samJones,pinkiePinkerton,louieWilkse,emmaMilito]);
 
 
 $(document).on('ready', function() {

@@ -2,9 +2,10 @@
 
 .navbar-brand {
 	font-size: 24px;
+	color: white;
 }
 .btn_top {
-	background-color: yellow;
+	background-color:yellow;
 	display: block;
 	position: absolute;
 	margin-top: 75px;
@@ -18,4 +19,7 @@
 .col-xs-3 {
 	padding-right: 6px;
 	padding-left: 6px;
+}
+select option {
+	background-color: red;
 }
