@@ -85,16 +85,34 @@ var updateKidAge=function(elem){
 	//elem.parent().siblings().children('[name="firstName"]').attr('placeholder', val());
 };
 
+// if kid age changes so the classes change, update level and pick list
 var updatePickList=function(elem){
+	var tempidNum=(elem.parent().parent().attr('id'));
+	this.$el=$('#'+tempidNum);
 	var elevenYears=31536000000*11;
 	var origAgeinMS=(Date.parse(Date())-Date.parse(elem.attr('placeholder')));
 	var newAgeinMS=(Date.parse(Date())-Date.parse(elem.val()));
-	//console.log(31536000000*8);
-	//console.log(Math.floor(Date.parse(elem.attr('placeholder'))));
-	if (newAgeinMS>=elevenYears && origAgeinMS<elevenYears){
-		console.log("here");
-	}
 
+	// determine which changes need to be made
+	if (newAgeinMS>=elevenYears && origAgeinMS<elevenYears){
+		var origSkiLevel = this.$el.find('[name="skiLevel10"]').val();
+		var origSBLevel = this.$el.find('[name="sbLevel10"]').val();
+		var newSkiLevel = (origSkiLevel === 'NA')?'NA': origSkiLevel.slice(0,-2);
+		this.$el.find('[name="skiLevel10"]').remove();
+
+		this.$el.siblings('.row')
+			.children('.ski_template')
+			.children('[name="skiLevel"]')
+			.clone().appendTo((this.$el)
+			.find('.ski_level_list')
+			.find('.ski_span'));
+
+		console.log(this.$el.find('[name="skiLevel"]'));	
+
+		this.$el.find('[name="skiLevel"]').attr('placeholder',newSkiLevel);	
+		//this.$el.find('[name="skiLevel"]').attr('placeholder',newSkiLevel);
+		//console.log(this.$el.siblings('.row').children('.ski_template').children());
+	}
 };
 
 // constructor for collection of kids
@@ -139,7 +157,7 @@ var joeSmith=new Kid('Joe','Smith','9/1/2001','half-red','');
 var janeSmith=new Kid('Jane','Smith','7/12/1997','blue','low-orange');
 var samJones=new Kid('Sam','Jones','2/4/2006','','');
 var pinkiePinkerton=new Kid('Pinkie','Pinkerton','6/22/2000','','low-silver');
-var louieWilkse=new Kid('Louie','Wilkse','10/15/2006','','high-silver');
+var louieWilkse=new Kid('Louie','Wilkse','10/15/2006','yellow10','');
 var emmaMilito=new Kid('Emma','Milito','7/31/2003','maroon','');
 var isaBello=new Kid('Isa','Bello','4/10/1995','red10','');
 var marthaSimbal=new Kid('Martha','Simbal','8/15/2003','blue','');
@@ -172,7 +190,7 @@ $(document).on('ready', function() {
 	$('.kid_container').on('change','[name="dob"]',function(){
 		var elem=$(this);
 		updateKidAge(elem);
-		//updatePickList(elem);
+		updatePickList(elem);
 	});
 
 	// listener on SORT by AGE button
