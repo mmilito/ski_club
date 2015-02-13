@@ -13,14 +13,14 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <!-- <div class="container"> -->
-        <div class="navbar-header">
+        <div class="navbar-override navbar-header">
 <!--           <button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button> -->
-          <a class="navbar-brand" href="#">Eskimo Admin</a>
+          <a class="navbar-override navbar-brand" href="#">Eskimo Admin</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -37,18 +37,25 @@
     </nav>
 
     <div class="btn-group" role="group" aria-label="...">
-      <button type="button" class=" btn_top btn btn-default">Add New</button>
+      <button type="button" class="btn_top btn btn-default" data-toggle="modal" data-target="#addKidModal">Add New</button>
+      <button type="button" class="btn_name btn btn-default">sort by NAME</button>
+      <button type="button" class="btn_age btn btn-default">sort by AGE</button>
     </div>
 
+
+<!-- TEMPLATE FOR KIDS 11 and OVER -->
     <div class="kid_container">
         <div class="row template">
-          <div class="col-xs-3">
-            <span>First Name</span><input type="text" name="firstName" class="form-control" placeholder=".col-xs-3">
+          <div class="col-md-2">
+            <span>First Name</span><input type="text" name="firstName" class="form-control" placeholder=".col-md-2">
           </div>
-          <div class="col-xs-3">
-            <span>Last Name</span><input type="text" name="lastName" class="form-control" placeholder=".col-xs-3">
+          <div class="col-md-2">
+            <span>Last Name</span><input type="text" name="lastName" class="form-control" placeholder=".col-md-2">
           </div>
-          <div class="col-xs-3">
+          <div class="col-md-2">
+            <span>DOB</span><input type="text" name="dob" class="form-control" placeholder=".col-md-2">
+          </div>
+          <div class="col-md-2">
               <span>Ski Level</span>
               <select name="skiLevel" class="form-control">
                 <option value="green">green</option>
@@ -66,7 +73,7 @@
                 <option value="new">new</option>
               </select>
           </div>
-          <div class="col-xs-3">
+          <div class="col-md-2">
               <span>SB Level</span>
               <select name="sbLevel" class="form-control">
                 <option value="new-green">new green</option>
@@ -83,13 +90,144 @@
                 <option value="new">new</option>
               </select>
           </div>
+          <div class="col-md-2">
+            <span>Age</span><input type="text" name="age" class="form-control" placeholder=".col-md-2">
+          </div>
+        </div>
 
+<!-- TEMPLATE FOR 10 YR and YOUNGER -->
+        <div class="row10 template">
+          <div class="col-md-2">
+            <span>First Name</span><input type="text" name="firstName" class="form-control" placeholder=".col-md-2">
+          </div>
+          <div class="col-md-2">
+            <span>Last Name</span><input type="text" name="lastName" class="form-control" placeholder=".col-md-2">
+          </div>
+          <div class="col-md-2">
+            <span>DOB</span><input type="text" name="dob" class="form-control" placeholder=".col-md-2">
+          </div>
+          <div class="col-md-2">
+              <span>Ski Level</span>
+              <select name="skiLevel10" class="form-control">
+                  <option value="green10">green10</option>
+                  <option value="yellow10">yellow10</option>
+                  <option value="blue10">blue10</option>
+                  <option value="half-red10">half-red10</option>
+                  <option value="red10">red10</option>
+                  <option value="half-maroon">half-maroon</option>
+                  <option value="maroon">maroon</option>
+                  <option value="half-white">half-white</option>
+                  <option value="white">white</option>
+                  <option value="low-black">low black</option>
+                  <option value="top-black">top black</option>
+                  <option value="NA">NA</option>
+                  <option value="new">new</option>
+                </select>
+          </div>
+          <div class="col-md-2">
+              <span>SB Level</span>
+              <select name="sbLevel10" class="form-control">
+                <option value="new-green10">new green10</option>
+                <option value="high-green10">high green10</option>
+                <option value="low-silver10">low silver10</option>
+                <option value="high-silver10">high silver10</option>
+                <option value="low-orange10">low orange10</option>
+                <option value="high-orange">high orange</option>
+                <option value="low-pink">low pink</option>
+                <option value="high-pink">high pink</option>
+                <option value="low-purple">low purple</option>
+                <option value="high-purple">high purple</option>
+                <option value="NA">NA</option>
+                <option value="new">new</option>
+              </select>
+          </div>
+          <div class="col-md-2">
+            <span>Age</span><input type="text" name="age" class="form-control" placeholder=".col-md-2">
+          </div>
 
-<!--           <div class="col-xs-3">
-            <span>SB Level</span><input type="text" name="sbLevel" class="form-control" placeholder=".col-xs-3">
-          </div> -->
         </div>
     </div>
+
+
+    <!-- MODAL FOR NEW KID -->
+
+    <div class="modal fade" id="addKidModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Kid</h4>
+          </div>
+          <div class="modal-body">
+            <form id="addKid">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" class="form-control" placeholder="new">
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" class="form-control" placeholder="new">
+              </div>
+              <div class="form-group">
+                <label for="dob">DOB</label>
+                <input type="text" name="dob" class="form-control" placeholder="m/d/yyyy">
+              </div>
+              <div class="form-group">
+                  <label for="skiLevel">Ski Level</label>
+                  <select name="skiLevel" class="form-control">
+                    <option value="green10">green10</option>
+                    <option value="green">green</option>
+                    <option value="yellow10">yellow10</option>
+                    <option value="yellow">yellow</option>
+                    <option value="blue10">blue10</option>
+                    <option value="blue">blue</option>
+                    <option value="half-red10">half-red10</option>
+                    <option value="half-red">half-red</option>
+                    <option value="red10">red10</option>
+                    <option value="red">red</option>
+                    <option value="half-maroon">half-maroon</option>
+                    <option value="maroon">maroon</option>
+                    <option value="half-white">half-white</option>
+                    <option value="white">white</option>
+                    <option value="low-black">low black</option>
+                    <option value="top-black">top black</option>
+                    <option value="NA">NA</option>
+                    <option value="new" selected>new</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="sbLevel">SB Level</label>
+                  <select name="sbLevel" class="form-control">
+                    <option value="new-green10">new green10</option>
+                    <option value="new-green">new green</option>
+                    <option value="high-green10">high green10</option>
+                    <option value="high-green">high green</option>
+                    <option value="low-silver10">low silver10</option>
+                    <option value="low-silver">low silver</option>
+                    <option value="high-silver10">high silver10</option>
+                    <option value="high-silver">high silver</option>
+                    <option value="low-orange10">low orange10</option>
+                    <option value="low-orange">low orange</option>
+                    <option value="high-orange">high orange</option>
+                    <option value="low-pink">low pink</option>
+                    <option value="high-pink">high pink</option>
+                    <option value="low-purple">low purple</option>
+                    <option value="high-purple">high purple</option>
+                    <option value="NA">NA</option>
+                    <option value="new" selected>new</option>
+                  </select>
+              </div>
+              <button type="submit" class="btn_save btn btn-primary">Save and Close</button>
+              <button type="button" class="btn_close btn btn-default" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

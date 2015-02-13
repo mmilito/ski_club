@@ -1,25 +1,99 @@
 /*main.css for main.js for ski club app */
-
-.navbar-brand {
+.navbar-inverse .navbar-brand {
+	color: black;
 	font-size: 24px;
-	color: white;
+	background-color: #CCCCCC;
+}
+/*.navbar-brand .navbar .navbar-inverse {
+	font-size: 34px;
+	color: black;
+}*/
+#navbar{
+	/*background-color: #0000FF;*/
+	background-color: #CCCCCC;
+}
+.history_container h1 {
+
+	margin-top: 75px;
+	margin-left:50px;
+	margin-bottom: 25px;
+	margin-right: 50px;
+	padding-left: 150px;
+	padding-left: 10px;
+}
+.history_container {
+
+	/*float: left;*/
+/*	max-width: 100%;
+	height: auto;*/
+	background-color: #FFEBCC;
+/*	background: url('eskimo-club.jpg');*/
+/*	background-repeat: no-repeat;*/
+}
+
+p {
+	margin-left:150px;
+	margin-right: 100px;
+	padding-left: 10px;
+	padding-left: 10px;
+	padding-bottom: 20px;
+}
+.btn-success, .btn_save {
+	background-color: #FF6600;
 }
 .btn_top {
 	background-color:yellow;
 	display: block;
-	position: absolute;
+	width:150px;
+	margin-top: 60px;
+}
+.btn_name {
+	color:white;
+	background-color:#FF6600;
+	display: inline-block;
+	width: 150px;
+	margin-top: 60px;
+	margin-left: 10px;
+}
+.btn_age {
+	color:white;
+	background-color:#FF6600;
+	display: inline-block;
+	width:150px;
+	margin-top: 60px;
+	margin-left: 10px;
+}
+.btn_skiLevel {
+	background-color:#FF6600;
+	display: inline-block;
+	/*position: absolute;*/
 	margin-top: 75px;
+	margin-left: 10px;
+}
+.btn_sbLevel {
+	background-color:#FF6600;
+	display: inline-block;
+	/*position: absolute;*/
+	margin-top: 75px;
+	margin-left: 10px;
+}
+.btn_save , .btn_close {
+	float: right;
+	margin-left: 10px;
 }
 .template {
 	display: none;
 }
 .not_a_template {
-	margin-top: 50px;
+	margin-top: 25px;
 }
-.col-xs-3 {
-	padding-right: 6px;
-	padding-left: 6px;
+.col-md-2 {
+	padding-right: -6px;
+	padding-left: -6px;
+	margin-right: -6px;
+	margin-left: -6px;
 }
+
 select option {
 	background-color: red;
 }
