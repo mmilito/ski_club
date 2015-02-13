@@ -99,7 +99,10 @@ var updatePickList=function(elem){
 		var origSBLevel = this.$el.find('[name="sbLevel10"]').val();
 		var newSkiLevel = (origSkiLevel === 'NA')?'NA': origSkiLevel.slice(0,-2);
 		this.$el.find('[name="skiLevel10"]').remove();
+		
 
+		// this delightful chaining locates single 
+		// element for cloning and appends in correct place
 		this.$el.siblings('.row')
 			.children('.ski_template')
 			.children('[name="skiLevel"]')
@@ -107,11 +110,13 @@ var updatePickList=function(elem){
 			.find('.ski_level_list')
 			.find('.ski_span'));
 
-		console.log(this.$el.find('[name="skiLevel"]'));	
+		this.$el.find('[name="skiLevel"]')
+			 .find('[value='+newSkiLevel+']')
+			 .attr('option','selected');
 
-		this.$el.find('[name="skiLevel"]').attr('placeholder',newSkiLevel);	
-		//this.$el.find('[name="skiLevel"]').attr('placeholder',newSkiLevel);
-		//console.log(this.$el.siblings('.row').children('.ski_template').children());
+		//this.$el.find('[name="skiLevel"]').attr('placeholder',newSkiLevel);	
+		
+	//this.$el.find('[name="skiLevel"]').children('[value='+this.skiLevel.level+']').attr('selected','selected');
 	}
 };
 
