@@ -1,0 +1,32 @@
+MAIN FUNCTIONALITY
+
+- enroll now functionality
+X	seed kidDetail database
+	create form to add data to db
+	user lookup and pre-populate data
+		create factory to hook in data
+		1) create kidController
+		2) create client.js angular to pick up data
+		3) create admin.jade to display
+
+
+DONE!!!!!
+- refactor admin page to read from db
+	create collections:
+X		1) separate collection for ski/sb colors = LevelList
+			use node loop to populate collection
+X		2) separate collection for bus list
+			use node loop to populate bus list
+X		3) main collection for kid data:  = KidDetail
+			name:{first, last},
+			dob: dob,
+			address:[{mainAddr}],
+			email:[{mainEmail, auxEmail}],
+			phone:[{mainCell, emergCell}],
+			medical:[{}],
+			busStop:
+			skiLevel: skiLevel,
+			sbLevel: sbLevel
+
+
+

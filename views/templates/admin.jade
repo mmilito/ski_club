@@ -1,0 +1,33 @@
+//- extends layout
+
+h3 ADMIN PAGE
+div(ng-controller="adminController")
+	form(editable-form="" name="tableform" oncancel="cancel()")
+		table.table.table-striped.table-bordered.table-condensed
+			thead
+				tr
+					th.header First
+					th.header Last 
+					th.header DOB 
+					th.header Age 
+					th.header SKI level 
+					th.header SB level 
+					th.header 
+						span(ng-show="tableform.$visible") Action
+
+			tbody
+				tr(ng-repeat="kid in kids")
+					td.edit.firstname 
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.first" e-form="tableform")
+								{{kid.name.first}}
+					td.edit.lastname {{kid.name.last}}
+					td.edit.dob {{kid.dob | date }}
+					td.edit.age {{kid.age}}
+					td.edit.skiLevel {{kid.skiLevel}}
+					td.edit.sbLevel {{kid.sbLevel}}
+					td
+						button.btn.btn-danger.pull-right(type="button" ng-show="tableform.$visible") del
+		div.btn-edit
+			button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
+		div.btn-form(ng-show="tableform.$visible")
+			button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") cancel
