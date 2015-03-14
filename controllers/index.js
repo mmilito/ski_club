@@ -4,6 +4,7 @@ var indexController = {
 	},
 
 	getTemplate: function(req,res){
+		//console.log('templateId:' +req.params.templateId);
 		res.render('templates/'+req.params.templateId);
 	}
 };

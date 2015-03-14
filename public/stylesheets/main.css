@@ -1,8 +1,10 @@
 /*MAIN CSS STYLESHEET*/
-
+#main-header {
+	float: right;
+}
 .navbar-header {
 	height: 7em;
-	background-color: lightblue;
+	/*background-color: lightblue;*/
 }
 .navbar-default {
 	background-color: orange;
@@ -10,9 +12,3 @@
 img {
 	float: left;
 }
-/*.logo {
-	background-image: url("images/shield-logo.jpg");
-	background-repeat: no-repeat;
-	width: 100%
-	heigth: auto;
-}*/

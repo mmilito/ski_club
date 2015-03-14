@@ -1,13 +1,18 @@
 MAIN FUNCTIONALITY
 
 - enroll now functionality
-X	seed kidDetail database
+
 	create form to add data to db
-	user lookup and pre-populate data
-		create factory to hook in data
-		1) create kidController
-		2) create client.js angular to pick up data
-		3) create admin.jade to display
+		1) edit functionality
+		2) delete functionality
+		3) modal for adding new kid to admin side
+
+- main page styling
+	add picture and logo
+	add login ability
+		1) hook in Passport
+	add call to action for new user or login
+	modal for new user (same as new kid on admin side??)
 
 
 DONE!!!!!
@@ -28,5 +33,11 @@ X		3) main collection for kid data:  = KidDetail
 			skiLevel: skiLevel,
 			sbLevel: sbLevel
 
+X	seed kidDetail database
 
 
+X	user lookup and pre-populate data
+X		create factory to hook in data
+X		1) create kidController
+X		2) create client.js angular to pick up data
+X		3) create admin.jade to display

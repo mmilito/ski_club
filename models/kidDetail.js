@@ -11,9 +11,9 @@ var kidSchema = mongoose.Schema({
 	address: {
 		street: String,
 		city: String,
-		state: String,
+		state: {type: String, default: 'CO'},
 		zip: String,
-		type: {type: String, default: 'main'}
+		type: {type: String, default: 'main'},
 	},
 	phone: {
 		mainCell: String,
@@ -23,11 +23,11 @@ var kidSchema = mongoose.Schema({
 		mainEmail: String,
 		auxEmail: String
 	},
-	medical: String,
+	medical: {type: String, default: 'none'},
 	busStop: String,
 	skiLevel: String,
 	sbLevel: String,
-	active: Boolean
+	active: {type: Boolean, default: false}
 });
 
 var MILLISECONDS_IN_A_YEAR = 31536000000;

@@ -31,6 +31,9 @@ app.get('/', indexController.index);
 app.get('/templates/:templateId', indexController.getTemplate);
 
 app.get('/routePlaceholder', kidController.getAll);
+app.post('/routePlaceholder', kidController.createNewKid);
+app.put('/routePlaceholder', kidController.deleteUpdateKid);
+
 
 
 var server = app.listen(9945, function() {
