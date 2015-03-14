@@ -1,13 +1,14 @@
-// SERVER SIDE
+// SERVER SIDE JAVASCRIPT
 
 var KidDetail = require('../models/kidDetail');
+
 
 var kidController = {
 
 	// get all data for all kids
 	getAll: function(req,res){
 		KidDetail.find({},function(err,results){
-			if (err){console.log(err)};
+			if (err){console.log(err);}
 			//console.log('results names', results.map(function (r) { return r.name.full }))
 			res.send(results);
 		});
@@ -17,37 +18,43 @@ var kidController = {
 	createNewKid: function(req,res){
 		var newKid = new KidDetail(req.body);
 		newKid.save(function(err,results){
-			if (err){console.log(err)};
+			if (err) {console.log(err);}
 			res.send(results);
 		});
 	},
 
-	// deletes or updates existing kid
+	// deletes or updates existing kid 
 	deleteUpdateKid: function(req,res){
-		var UpdateOrDelete = req.body.method;
-		// if the flag is TRUE, then delete the record
+		var UpdateOrDelete = req.body.method;  // method=flag
+		// if the flag is TRUE (exists on record), then delete the record
 		if(UpdateOrDelete){
 			var kidToDelete=KidDetail.findById(req.body.id);
 			KidDetail.remove(kidToDelete, function(err,results){
-			 	if (err){console.log(err)};
+			 	if (err){console.log(err);}
 				res.send(results);
 			});
-		// if the flag is FALSE, then update the record
+		// if the flag is not there, update the record
 		} else {
-			console.log('updateKid',req.body);
+			// in order to have variable passed to db for update must be object
+			var dbObj={};
+			dbObj[req.body.fieldname]=req.body.newValue;
+			var id=req.body.id;
+			KidDetail.findByIdAndUpdate(id, dbObj,function(err,results) {
+			 	if (err) {console.log(err);}
+			 	res.send(results);
+			});
 		}
 	},
 
-	// updates existing records in db
-
-
-		//console.log(KidDetail.find({id: req.body.id}));
-		// KidDetail.update(
-		// 	{id: req.id},
-		// 	{$set: {  // add schema here
-
-		// 	}});
-	//}
+		// color level data
+	getLevels: function(req,res){
+		console.log('getLevels22');
+		KidDetail.find({category:"old"},function(err,results){
+			if (err){console.log(err);}
+			console.log(results);
+			res.send(results);
+		});
+	}
 
 }; // end kidController
 

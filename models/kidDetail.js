@@ -25,8 +25,8 @@ var kidSchema = mongoose.Schema({
 	},
 	medical: {type: String, default: 'none'},
 	busStop: String,
-	skiLevel: String,
-	sbLevel: String,
+	skiLevel: {type: String, default: 'na'},
+	sbLevel: {type: String, default: 'na'},
 	active: {type: Boolean, default: false}
 });
 
@@ -38,6 +38,16 @@ kidSchema.virtual('age')
 kidSchema.virtual('name.full')
 	.get(function(){
 		return this.name.first+" "+this.name.last;
+	});
+kidSchema.virtual('category')
+	.get(function(){
+		if (this.skiLevel==="na"){
+			return('na');
+		} else if  (this.age>10 && this.skiLevel!=="na"){
+			return('old');
+		} else {
+			return('ten');
+		}
 	});
 
 kidSchema.set('toJSON', {virtuals: true});

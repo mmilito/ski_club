@@ -14,6 +14,10 @@ eskimoApp.config(function($routeProvider){
 			templateUrl: '/templates/admin',
 			controller: 'adminController'
 		});
+		// .when('/newUser',{
+		// 	templateUrl: '/templates/newUser',
+		// 	controller: 'levelController'
+		// });
 });
 
 // factory to hook up database
@@ -21,9 +25,6 @@ eskimoApp.factory('KidDetail', function($resource){
 	var eskimos = $resource(
 		'/routePlaceholder/:id',
 		{id: '@_id'},
-		{delete: {
-			method: 'PUT'
-		}},
 		{update: {
 			method: 'PUT'
 		}}
@@ -34,29 +35,32 @@ eskimoApp.factory('KidDetail', function($resource){
 	};
 });
 
-eskimoApp.factory('LevelList', function($resource){
-	var levellist = $resource(
-		'/routePlaceholder/:id',
-		{id: '@_id'}
-	);
-	return{
-		model: levellist,
-		detail: levellist.query()
-	};
-});
+// eskimoApp.factory('LevelList', function($resource){
+// 	var levellist = $resource(
+// 		'/routeToLevels/:id',
+// 		{id: '@_id'}
+// 	);
+// 	return{
+// 		model: levellist,
+// 		detail: levellist.query()
+// 	};
+// });
 
 
-// angular controllers
+//ANGULAR CONTROLLERS
+// home
 eskimoApp.controller('homeController',function(){});
 
-eskimoApp.controller('adminController',function($scope, $modal, $routeParams, KidDetail, LevelList){
+
+// kid detail controller
+eskimoApp.controller('adminController',function($scope, $modal, $routeParams, KidDetail){
 	$scope.kids=KidDetail.detail;
 
-	$scope.open = function (size) {
+	$scope.open=function (size) {
 
-	var modalInstance = $modal.open({
+	var modalInstance=$modal.open({
 		templateUrl: 'addModalContent',
-		controller: 'modalController',
+		controller: 'adminController',
 		size: size,
 		resolve: {
 			kids: function () {
@@ -66,50 +70,70 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 	});
 
 	modalInstance.result.then(function (selectedKid) {
-		$scope.selected = selectedKid;
+		$scope.selected=selectedKid;
 			var tempKid=new KidDetail.model(selectedKid);
 			tempKid.$save(function(savedKid){
 			var modelKid=new KidDetail.model(savedKid);
 			});
 		}); 
-  };
+	};
 
-  	// delete selected kid; MUST have put route in app.js and add to factory
-		$scope.delete = function(id){
-			KidDetail.model.delete({id:id, method:true});		
+// 	// delete selected kid; MUST have put route in app.js and delete method in factory
+// 	// method:true property is flag to trigger logic in kidController.js tells delete not update
+		$scope.delete=function(id){
+			KidDetail.model.update({id:id, method:true});		
 		};
 
-	// update selected kid; MUST have put route in app.js and add to factory
-		$scope.update=function(fieldname, fieldvalue){
-			console.log(fieldname, fieldvalue);
-			//console.log(KidDetail.model.find({id:id}));
+// 	// update selected kid; running to same endpoint as delete w/o delete flag
+		$scope.update=function(id, self, fieldname, fieldvalue){
+			var origValue=(
+				{	id: id,
+					fieldname: fieldname,
+					origValue: fieldvalue
+				});
+			var newValue=(
+				{	id: id,
+					fieldname: fieldname,
+					newValue: self.$data
+				});
+			KidDetail.model.update(newValue);
 		};
-});
 
-eskimoApp.controller('modalController',function($scope, $modal, $routeParams, KidDetail){
-	//console.log('modalController');
-	// $scope.kids=KidDetail.detail;
+		$scope.tenSkiValues=[
+			'green10',
+			'yellow10',
+			'blue10',
+			'half-red10',
+			'red10',
+			'half-maroon10',
+			'maroon10',
+			'half-white10',
+			'white10',
+			'low-black10',
+			'top-black10',
+			'TBC'
+		];
 
-	// $scope.selected={
-	// 	kid: $scope.kids[0]
-	// };
+		$scope.tenSki=function(){
+			console.log($scope.tenSkiValues);
+			$scope.tenSki=$scope.tenSkiValues[0];
+			};
 
-	// $scope.cancel=function(){
-	// 	$modalInstance.dismiss('cancel');
-	// };
 
-	// $scope.kid={};
-	// $scope.addNewKid=function(){
+}); // end adminController
 
-	// 	var tempKid=new KidDetail.model($scope.kid);
-	// 	tempKid.$save(function(savedKid){
-	// 		var modelKid=new KidDetail.model(savedKid);
-	// 		console.log(modelKid.name.first);
-	// 		//KidDetail.kids.push(modelKid);
-	// 	});
+// level Controller
+eskimoApp.controller('levelController',function($scope, $modal, $routeParams){
+		// KID SKI AND SB LEVELS	
+	// $scope.levels=LevelList.detail;
+	// 	console.log(LevelList);
 
-	// };
-});
+	// $scope.levelLookup=function(){
+	// 	console.log('here');
+	// 	return($scope.levels);
+	//};
+
+});  // end levelController
 
 
 

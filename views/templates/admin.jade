@@ -18,16 +18,16 @@ div(ng-controller="adminController")
 			tbody
 				tr(ng-repeat="kid in kids")
 					td.edit.firstname 
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.first" e-form="tableform" e-ng-change="update('kid.name.first',kid.name.first)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.first}}
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.first" e-form="tableform" e-ng-change="update(kid.id,this,'name.first',kid.name.first)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.first}}
 					td.edit.lastname
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.last" e-form="tableform" e-ng-change="update('kid.name.last',kid.name.last)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.last}}	
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.last" e-form="tableform" e-ng-change="update(kid.id,this,'name.last',kid.name.last)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.last}}	
 					td.edit.dob 
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob" e-form="tableform" e-ng-change="update('kid.dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
-					td.edit.age {{kid.age}}
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob | date" e-form="tableform" e-ng-change="update(kid.id,this,'dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
+					td.edit.age {{kid.age}} {{kid.category}}
 					td.edit.skiLevel
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.skiLevel" e-form="tableform" e-ng-change="update('kid.skiLevel',kid.skiLevel)" e-ng-model-options="{updateOn:'blur'}") {{kid.skiLevel}}
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.skiLevel" e-form="tableform" e-ng-change="update(kid.id,this,'skiLevel',kid.skiLevel)" e-ng-model-options="{updateOn:'blur'}") {{kid.skiLevel}}
 					td.edit.sbLevel
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.sbLevel" e-form="tableform" e-ng-change="update('kid.sbLevel',kid.sbLevel)" e-ng-model-options="{updateOn:'blur'}") {{kid.sbLevel}}	
+						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.sbLevel" e-form="tableform" e-ng-change="update(kid.id,this,'sbLevel',kid.sbLevel)" e-ng-model-options="{updateOn:'blur'}") {{kid.sbLevel}}	
 					td
 						button.btn.btn-danger.pull-right(type="button" ng-show="tableform.$visible" ng-click="delete(kid._id)") del
 		div.btn-edit
@@ -35,6 +35,10 @@ div(ng-controller="adminController")
 		div.btn-form(ng-show="tableform.$visible")
 			button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") cancel
 			button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="open()") add new eskimo
+
+		select(ng-model="tenSkiValues")
+			option(ng-click="tenSki()" ng-options="val for val in tenSkiValues")
+
 	
 	//- modal for adding new kid
 	script#addModalContent(type="text/ng-template")
@@ -58,14 +62,8 @@ div(ng-controller="adminController")
 				input.checkbox.status(type="checkbox" ng-model="kid.active")
 				input.medical(type="text" ng-model="kid.medical" placeholder="medical info")
 
-			//- this is hooked into the database to read in  
-				//- ul
-				//- 	li(ng-repeat="kid in kids")
-				//- 		a(ng-click="selected.kid = kid"){{ kid.busStop }}
-				//- 	Selected: <b>{{ selected.kid }}</b>
 			div.modal-footer
 				button.btn.btn-primary(type="submit") OK
 				button.btn.btn-warning(ng-click="$dismiss()") Cancel
 
 
-	//- div(ng-show="selected") Selection from a modal: {{ selected }}

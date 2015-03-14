@@ -16,6 +16,7 @@ require('./models/staticData/kidDetailSeed');
 // mware controllers
 var indexController = require('./controllers/index');
 var kidController = require('./controllers/kidController');
+//var levelController = require('./controllers/levelController');
 
 
 
@@ -33,6 +34,7 @@ app.get('/templates/:templateId', indexController.getTemplate);
 app.get('/routePlaceholder', kidController.getAll);
 app.post('/routePlaceholder', kidController.createNewKid);
 app.put('/routePlaceholder', kidController.deleteUpdateKid);
+//app.get('/routePlaceholder', levelController.getLevels);
 
 
 
