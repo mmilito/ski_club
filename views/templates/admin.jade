@@ -16,7 +16,7 @@ div(ng-controller="adminController")
 						span(ng-show="tableform.$visible") Action
 
 			tbody
-				tr(ng-repeat="kid in kids")
+				tr(ng-repeat="kid in kids | orderBy:'name.last' ")
 					td.edit.firstname 
 						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.first" e-form="tableform" e-ng-change="update(kid.id,this,'name.first',kid.name.first)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.first}}
 					td.edit.lastname

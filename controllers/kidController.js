@@ -7,12 +7,22 @@ var kidController = {
 
 	// get all data for all kids
 	getAll: function(req,res){
-		KidDetail.find({},function(err,results){
+		KidDetail.find(({}),function(err,results){
 			if (err){console.log(err);}
-			//console.log('results names', results.map(function (r) { return r.name.full }))
+			//console.log('sorted',results.sort({"results.skiLevel":-1}));
+			//console.log('results names', results.map(function (r) { return r.name.full }));
+			//results.sort('name.last',1);
+			//console.log('orig',results);
 			res.send(results);
 		});
 	},
+
+	// getSorted: function(req,res){
+	// 	KidDetail.find({}).sort({skiLevel:1}),function(err,results){
+	// 		console.log(results);
+	// 		res.send(results);
+	// 	};
+	// },
 
 	// creates new record from data sent from form
 	createNewKid: function(req,res){
