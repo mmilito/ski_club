@@ -34,7 +34,8 @@ app.get('/templates/:templateId', indexController.getTemplate);
 app.get('/routePlaceholder', kidController.getAll);
 app.post('/routePlaceholder', kidController.createNewKid);
 app.put('/routePlaceholder', kidController.deleteUpdateKid);
-//app.get('/routePlaceholder', levelController.getLevels);
+app.get('/routePlaceholder', kidController.getLevels);
+app.get('/routeToLevels', kidController.getLevels2);
 
 
 

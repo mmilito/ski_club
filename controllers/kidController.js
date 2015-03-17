@@ -1,6 +1,7 @@
 // SERVER SIDE JAVASCRIPT
 
 var KidDetail = require('../models/kidDetail');
+var LevelList = require('../models/staticData/levelList');
 
 
 var kidController = {
@@ -9,20 +10,10 @@ var kidController = {
 	getAll: function(req,res){
 		KidDetail.find(({}),function(err,results){
 			if (err){console.log(err);}
-			//console.log('sorted',results.sort({"results.skiLevel":-1}));
 			//console.log('results names', results.map(function (r) { return r.name.full }));
-			//results.sort('name.last',1);
-			//console.log('orig',results);
 			res.send(results);
 		});
 	},
-
-	// getSorted: function(req,res){
-	// 	KidDetail.find({}).sort({skiLevel:1}),function(err,results){
-	// 		console.log(results);
-	// 		res.send(results);
-	// 	};
-	// },
 
 	// creates new record from data sent from form
 	createNewKid: function(req,res){
@@ -46,6 +37,7 @@ var kidController = {
 		// if the flag is not there, update the record
 		} else {
 			// in order to have variable passed to db for update must be object
+			//console.log(req.body);
 			var dbObj={};
 			dbObj[req.body.fieldname]=req.body.newValue;
 			var id=req.body.id;
@@ -64,7 +56,16 @@ var kidController = {
 			console.log(results);
 			res.send(results);
 		});
+	},
+
+	getLevels2: function(req,res){
+		LevelList.find(({}),function(err,results){
+			if (err){console.log(err);}
+			//console.log('results names', results.map(function (r) { return r.name.full }));
+		res.send(results);
+		});
 	}
+
 
 }; // end kidController
 
