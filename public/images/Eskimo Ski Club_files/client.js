@@ -58,24 +58,18 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 	$scope.predicate='name.last';  // default sort by last name
 
 	$scope.levels=LevelList.detail;
-	$scope.oneKid=KidDetail.findOneKid;
+	//console.log('first',$scope.levels);
+	//console.log('second',$scope.levels[0]);
 
-	$scope.reloadRoute=function(){
-		// cancel edit mode and re-enter edit mode
-		$http.get('/routePlaceholder/admin');
-		return $scope.kids;
-	};
+	$scope.open=function (size) {
 
-
-	//NEW KID modal
-	$scope.openNew=function (size) {
-		var modalInstance=$modal.open({
-			templateUrl: 'addModalContent',
-			controller: 'adminController',
-			size: size,
-			resolve: {
-				kids: function () {
-				return $scope.kids;
+	var modalInstance=$modal.open({
+		templateUrl: 'addModalConten',
+		controller: 'adminController',
+		size: size,
+		resolve: {
+			kids: function () {
+			return $scope.kids;
 			}
 		}
 	});
@@ -89,56 +83,24 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 		}); 
 	};
 
-	//UPDATE KID via modal; complete data
-
-	// $scope.openExisting=function (id) {
-	// 	console.log('here', id);
-	// 	var modalInstance=$modal.open({
-	// 		templateUrl: 'updateModalContent',
-	// 		controller: 'adminController',
-	// 		//size: size,
-	// 		resolve: {
-	// 			kids: function () {
-	// 			return $scope.kids;
-	// 		}
-	// 	}
-	// });
-
-	// 	modalInstance.result.then(function (id) {
-	// 		console.log('ID',id);
-	// 		$scope.selected2=function(){
-	// 			var temp=(KidDetail.findOneKid(id));
-	// 			console.log(temp);
-	// 			return temp;
-	// 		};
-	// 	}); 
-	// };
-
 // 	// delete selected kid; MUST have put route in app.js and delete method in factory
 // 	// method:true property is flag to trigger logic in kidController.js tells delete not update
 		$scope.delete=function(id){
-			KidDetail.model.update({id:id, method:true}, function(err,results){
-				if(err){console.log(err);}
-				return(results);
-			});		
+			KidDetail.model.update({id:id, method:true});		
 		};
 
-// 	// update selected kid INLINE - no modal; running to same endpoint as delete w/o delete flag
+// 	// update selected kid; running to same endpoint as delete w/o delete flag
 		$scope.update=function(id, self, fieldname){
 			var newValue=(
 				{	id: id,
 					fieldname: fieldname,
 					newValue: self.$data
 				});
-			//$scope.message='UPDATED';
+			//console.log('values',id, self, fieldname);
+			//console.log(newValue);
 			KidDetail.model.update(newValue);
 
 		};
-
-		// $scope.changeLevels=function(id){
-		// 	console.log('front end',id);
-		// 	//KidDetail.changeLevels(id);
-		// };
 
 		$scope.busStops=[
 			{stop:'Parker'},
@@ -197,8 +159,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 			{color:'high-pink10',label:'high-pink10'},
 			{color:'low-purple10',label:'low-purple10'},
 			{color:'high-purple10',label:'high-purple10'},
-			{color:'RBC',label:'RBC'},
-			{color:'na',label:'na'}
+			{color:'RBC',label:'RBC'}
 		];
 
 		$scope.oldSbValues=[
@@ -212,8 +173,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 			{color:'high-pink',label:'high-pink'},
 			{color:'low-purple',label:'low-purple'},
 			{color:'high-purple',label:'high-purple'},
-			{color:'RBC',label:'RBC'},
-			{color:'na',label:'na'}
+			{color:'RBC',label:'RBC'}
 			];
 
 		$scope.skiValues=function(category){

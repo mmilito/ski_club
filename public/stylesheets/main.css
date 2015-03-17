@@ -2,16 +2,16 @@
 #main-header {
 	float: right;
 }
-.navbar-header {
-	height: 7em;
-	/*background-color: lightblue;*/
-}
-.navbar-default {
-	background-color: orange;
-}
-img {
+#eskimo-logo {
 	float: left;
 }
-#last-name-sort {
-	background-color: red;
+.navbar-header {
+	height: 7em;
 }
+.navbar-default {
+	background-color: #96a7b4;
+}
+.sort-tag {
+	color: #595959 ;
+}
+

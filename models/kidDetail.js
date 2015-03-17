@@ -7,7 +7,7 @@ var kidSchema = mongoose.Schema({
 		first: String,
 		last: String
 	},
-	dob: {type: Date, default: '1/1/1950'},
+	dob: {type: Date, default: Date.now},
 	address: {
 		street: String,
 		city: String,

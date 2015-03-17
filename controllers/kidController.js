@@ -24,6 +24,14 @@ var kidController = {
 		});
 	},
 
+	findOneKid: function(req,res){
+		var id=req.id;
+		KidDetail.findById((id),function(err,results){
+			if(err){console.log(err);}
+			res.send(results);
+		});
+	},
+
 	// deletes or updates existing kid 
 	deleteUpdateKid: function(req,res){
 		var UpdateOrDelete = req.body.method;  // method=flag
@@ -50,10 +58,8 @@ var kidController = {
 
 		// color level data
 	getLevels: function(req,res){
-		console.log('getLevels22');
 		KidDetail.find({category:"old"},function(err,results){
 			if (err){console.log(err);}
-			console.log(results);
 			res.send(results);
 		});
 	},
@@ -63,6 +69,16 @@ var kidController = {
 			if (err){console.log(err);}
 			//console.log('results names', results.map(function (r) { return r.name.full }));
 		res.send(results);
+		});
+	},
+
+	changeLevels: function(req,res){
+		console.log('HERE111',req.body);
+		var id=req.body.id;
+		KidDetail.findById((id),function(err,results){
+			console.log('HERE',req.body);
+			console.log('HERE2',results);
+			res.send(results);
 		});
 	}
 

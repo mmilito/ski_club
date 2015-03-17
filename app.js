@@ -36,6 +36,7 @@ app.post('/routePlaceholder', kidController.createNewKid);
 app.put('/routePlaceholder', kidController.deleteUpdateKid);
 app.get('/routePlaceholder', kidController.getLevels);
 app.get('/routeToLevels', kidController.getLevels2);
+app.get('/routePlaceholder', kidController.changeLevels);
 
 
 

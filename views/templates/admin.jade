@@ -8,14 +8,14 @@ div(ng-controller="adminController")
 				tr
 					th.header First
 					th.header 
-						a(href='' ng-click='predicate="name.last"; reverse=!reverse') Last
-					th.header DOB 
+						a.sort-tag(href='' ng-click='predicate="name.last"; reverse=!reverse') Last
 					th.header
-						a(href='' ng-click='predicate="age"; reverse=!reverse') Age
+						a.sort-tag(href='' ng-click='predicate="skiLevel"; reverse=!reverse') SKI level
 					th.header
-						a(href='' ng-click='predicate="skiLevel"; reverse=!reverse') SKI level 
+						a.sort-tag(href='' ng-click='predicate="sbLevel"; reverse=!reverse') SB level
 					th.header
-						a(href='' ng-click='predicate="sbLevel"; reverse=!reverse') SB level 
+						a.sort-tag(href='' ng-click='predicate="age"; reverse=!reverse') Age
+					//- th.header DOB 
 					th.header 
 						span(ng-show="tableform.$visible") Action
 
@@ -24,24 +24,27 @@ div(ng-controller="adminController")
 					td.edit.firstname 
 						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.name.first" e-form="tableform" e-ng-change="update(kid.id,this,'name.first',kid.name.first)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.first}}
 					td.edit.lastname 
-						span(ng-hide="tableform.$visible()" editable-text="kid.name.last" e-form="tableform" e-ng-change="update(kid.id,this,'name.last',kid.name.last)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.last}}	
-					td.edit.dob 
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob | date" e-form="tableform" e-ng-change="update(kid.id,this,'dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
-					td.edit.age {{kid.age}}
+						span(ng-click="tableform.$show()" editable-text="kid.name.last" e-form="tableform" e-ng-change="update(kid.id,this,'name.last',kid.name.last)" e-ng-model-options="{updateOn:'blur'}") {{kid.name.last}}
 					td.edit.skiLevel
-						//- span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.skiLevel" e-form="tableform" e-ng-change="update(kid.id,this,'skiLevel')" e-ng-model-options="{updateOn:'blur'}") {{kid.skiLevel}}
-						select(editable-select="kid.skiLevel" type="text" ng-show="tableform.$visible" e-ng-change="update(kid.id,this,'skiLevel')" e-ng-options="c.color as c.label for c in skiValues(kid.category)")
+							span.ng-hide(ng-hide="tableform.$visible") {{kid.skiLevel}}
+							select(editable-select="kid.skiLevel" type="text" ng-show="tableform.$visible" e-ng-change="update(kid.id,this,'skiLevel')" e-ng-options="c.color as c.label for c in skiValues(kid.category)")
 					td.edit.sbLevel
-						span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.sbLevel" e-form="tableform" e-ng-change="update(kid.id,this,'sbLevel',kid.sbLevel)" e-ng-model-options="{updateOn:'blur'}") {{kid.sbLevel}}	
+							span.ng-hide(ng-hide="tableform.$visible") {{kid.sbLevel}}
+							select(editable-select="kid.sbLevel" type="text" ng-show="tableform.$visible" e-ng-change="update(kid.id,this,'sbLevel')" e-ng-options="c.color as c.label for c in sbValues(kid.category)")
+					td.edit.age {{kid.age}}
 					td
-						span.glyphicon.glyphicon-pencil(ng-show="tableform.$visible" ng-click="open(kid.id)")
+						span.glyphicon.glyphicon-pencil(ng-show="tableform.$visible" ng-click="openExisting(kid.id)")
 						button.btn.btn-danger.pull-right(type="button" ng-show="tableform.$visible" ng-click="delete(kid._id)") del
-		div.btn-edit
-			button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
-		div.btn-form(ng-show="tableform.$visible")
-			button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") cancel
-			button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="open()") add new eskimo
-			button.btn.btn-default(type="submit" ng-disabled="tableform.$waiting" ng-submit="$close(kid)") save and refresh
+			div.btn-edit
+				button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
+			div.btn-form(ng-show="tableform.$visible")
+				button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") cancel
+				button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
+				button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="reloadRoute()") refresh
+				button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="changeLevels('550721c7dfa4e50c5af07623')") trigger changelevel
+
+				//- 			td.edit.dob 
+		//- 				span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob | date" e-form="tableform" e-ng-change="update(kid.id,this,'dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
 	
 	//- modal for adding new kid
 	script#addModalContent(type="text/ng-template")
@@ -60,7 +63,7 @@ div(ng-controller="adminController")
 				input.mainCell(type="text" ng-model="kid.phone.mainCell" placeholder="cell")
 				input.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder="emergency number")
 				select.busStop(type="text" ng-model="busStops")
-					option(ng-repeat="stop in busStops | orderBy:'stop'") {{stop.stop}}
+					option(ng-repeat="stop in busStops | orderBy:'stop' track by $index") {{stop.stop}}
 				input.skiLevel(type="text" ng-model="kid.skiLevel" placeholder="ski level")
 				input.sbLevel(type="text" ng-model="kid.sbLevel" placeholder="sb level")
 				input.checkbox.status(type="checkbox" ng-model="kid.active")
@@ -71,30 +74,30 @@ div(ng-controller="adminController")
 				button.btn.btn-warning(ng-click="$dismiss()") Cancel
 
 	//- modal for updating existing kid
-	//- script#updateModalContent(type="text/ng-template")
-	//- 	div.modal-header
-	//- 		h3.modal-title Update Eskimo
+	script#updateModalContent(type="text/ng-template")
+		div.modal-header
+			h3.modal-title Update Eskimo
 
-	//- 	form.simple-form(novalidate ng-submit="$close(kid)")
-	//- 		div.modal-body
-	//- 			input.first-name(ng-model="kid.name.first" type="text" placeholder={{kid.name.first}})
-	//- 			input.last-name(ng-model="kid.name.last" type="text" placeholder={{kid.name.last}})
-	//- 			input.dob(type="date" ng-model="kid.dob" placeholder={{"kid.dob"}})
-	//- 			input.street(type="text" ng-model="kid.address.street" placeholder={{kid.address.street}})
-	//- 			input.city(type="text" ng-model="kid.address.city" placeholder={{kid.address.city}})
-	//- 			input.state(type="text" ng-model="kid.address.state" placeholder={{kid.address.state}})
-	//- 			input.zip(type="text" ng-model="kid.address.zip" placeholder={{kid.address.zip}})
-	//- 			input.mainCell(type="text" ng-model="kid.phone.mainCell" placeholder={{kid.phone.mainCell}})
-	//- 			input.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder={{kid.phone.emergCell}})
-	//- 			select.busStop(type="text" ng-model="busStops")
-	//- 				option(ng-repeat="stop in busStops | orderBy:'stop'") {{stop.stop}}
-	//- 			input.skiLevel(type="text" ng-model="kid.skiLevel" placeholder={{kid.skiLevel}})
-	//- 			input.sbLevel(type="text" ng-model="kid.sbLevel" placeholder={{kid.sbLevel}})
-	//- 			input.checkbox.status(type="checkbox" ng-model="kid.active")
-	//- 			input.medical(type="text" ng-model="kid.medical" placeholder="medical info")
+		form.simple-form(novalidate ng-submit="$close(kid.id)")
+			div.modal-body
+				input.first-name(ng-model="kid.name.first" type="text" placeholder="first name")
+				//- input.last-name(ng-model="kid.name.last" type="text" placeholder={{kid.name.last}})
+				//- input.dob(type="date" ng-model="kid.dob" placeholder={{"kid.dob"}})
+				//- input.street(type="text" ng-model="kid.address.street" placeholder={{kid.address.street}})
+				//- input.city(type="text" ng-model="kid.address.city" placeholder={{kid.address.city}})
+				//- input.state(type="text" ng-model="kid.address.state" placeholder={{kid.address.state}})
+				//- input.zip(type="text" ng-model="kid.address.zip" placeholder={{kid.address.zip}})
+				//- input.mainCell(type="text" ng-model="kid.phone.mainCell" placeholder={{kid.phone.mainCell}})
+				//- input.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder={{kid.phone.emergCell}})
+				//- select.busStop(type="text" ng-model="busStops")
+				//- 	option(ng-repeat="stop in busStops | orderBy:'stop'") {{stop.stop}}
+				//- input.skiLevel(type="text" ng-model="kid.skiLevel" placeholder="skilevel")
+				//- input.sbLevel(type="text" ng-model="kid.sbLevel" placeholder="sblevel")
+				//- input.checkbox.status(type="checkbox" ng-model="kid.active")
+				//- input.medical(type="text" ng-model="kid.medical" placeholder="medical info")
 
-	//- 		div.modal-footer
-	//- 			button.btn.btn-primary(type="submit") OK
-	//- 			button.btn.btn-warning(ng-click="$dismiss()") Cancel
+			div.modal-footer
+				button.btn.btn-primary(type="submit") OK
+				button.btn.btn-warning(ng-click="$dismiss()") Cancel
 
 
