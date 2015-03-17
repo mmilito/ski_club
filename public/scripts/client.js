@@ -62,7 +62,6 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 
 	$scope.reloadRoute=function(){
 		// cancel edit mode and re-enter edit mode
-		$http.get('/routePlaceholder/admin');
 		return $scope.kids;
 	};
 
@@ -119,6 +118,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 		$scope.delete=function(id){
 			KidDetail.model.update({id:id, method:true}, function(err,results){
 				if(err){console.log(err);}
+				scope.$apply();
 				return(results);
 			});		
 		};

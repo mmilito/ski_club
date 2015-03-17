@@ -39,7 +39,7 @@ app.get('/routeToLevels', kidController.getLevels2);
 app.get('/routePlaceholder', kidController.changeLevels);
 
 
-
+var port = process.env.PORT || 9945;
 var server = app.listen(9945, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
