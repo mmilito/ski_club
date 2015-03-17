@@ -5,7 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // db connection
-mongoose.connect('mongodb://localhost/skiClub');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/skiClub');
 
 // verify database
 require('./models/staticData/initialBusStopCollection');
