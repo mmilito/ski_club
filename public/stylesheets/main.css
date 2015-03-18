@@ -1,6 +1,7 @@
 /*MAIN CSS STYLESHEET*/
 body {
-	background-image: url('/images/history2.jpg')
+	background: url('/images/binding_light_@2X.png');
+	background-color: #bbb;
 }
 #main-header {
 	font-family: 'Oswald', sans-serif;
@@ -9,21 +10,21 @@ body {
 }
 #eskimo-logo {
 	/*float: right;*/
-	position:fixed;
+	position:absolute;
 	left: 10px;
 	top:5px;
 }
 #tagline {
-	text-align: right;
+	text-align: left;
 	font-family: 'Oswald', sans-serif;
-	font-size: 1em;
+	font-size: 20px;
+	font-weight: 300;
 	color: white;
-	width: 350px;
-	margin-right: -25px;
-	position: relative;
+	margin-left: 100px;
+	font-style: italic;
 }
 .navbar-header {
-	height: 40px;
+	height: 90px;
 }
 .navbar-default {
 	background-color: #96a7b4;
@@ -47,17 +48,27 @@ body {
 	color: #595959 ;
 	background-color: #96a7b4;
 }
-.background-white.container {
+.background-white {
 	background-color: white;
 }
+.hero {
+/*	box-sizing: border-box;*/
+	/*background-color: white;*/
+	text-align: center;
+}
+.hero img {
+	width: 100%;
+	height: auto;
+/*	border: solid 2px white;
+*/}
 .jumbotron {
-	background-image: url('/images/skischool.jpg');
-	background-repeat: no-repeat;
-	width: 90%;
-	height: 450px;
-	background-position: center;
-	background-color: #4b5b68;
-	padding-top: 55px;
+	/*background-image: url('/images/skischool.jpg');*/
+	/*background-repeat: no-repeat;*/
+	/*width: 90%;*/
+	/*height: 450px;*/
+	/*background-position: center;*/
+	background-color: white;
+	/*padding-top: 55px;*/
 }
 /*.overlay {
 	font-family:  'Oswald', sans-serif;
@@ -67,7 +78,7 @@ body {
 .home-btn {
 	/*position: fixed;*/
 	vertical-align: right;
-	background-color: #96a7b4;
+	background: #96a7b4;
 
 }
 .skiLevel {
@@ -75,7 +86,7 @@ body {
 	font:1em;
 }
 .btn-bus {
-	position: fixed;
+	position: absolute;
 	right: 20px;
 	top:25px;
 	background-color: #f47a20;
@@ -89,6 +100,9 @@ body {
 	width: 350px;
 	margin-left:45px;
 	margin-bottom:5px;
+}
+.tablecustom {
+	margin-top: 10px;
 }
 .tabletop {
 	background-color: #eeeceb;

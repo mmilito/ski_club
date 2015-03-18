@@ -100,12 +100,18 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 		var temp=[];
 		temp.push(selectedKid);
 		var temp2= _.pluck(temp,'_id');
-
+		console.log('sk',selectedKid);
+		var temp3=_.find($scope.kids,function(obj){
+			//console.log('typeof1',typeof obj._id);
+			//console.log('typeof2',typeof temp2);
+			return obj._id===selectedKid._id;
+		});
+		console.log('temp3',temp3);
 		var modalInstance=$modal.open({
 			templateUrl: 'updateModalContent',
 			controller: 'adminController',
 			//size: size,
-			resolve: temp2
+			resolve: $scope.temp3
 		});
 	};
 
