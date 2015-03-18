@@ -13,6 +13,10 @@ eskimoApp.config(function($routeProvider){
 		.when('/admin',{
 			templateUrl: '/templates/admin',
 			controller: 'adminController'
+		})
+		.when('/busSched',{
+			templateUrl: '/templates/busSched',
+			controller: 'adminController'
 		});
 		// .when('/newUser',{
 		// 	templateUrl: '/templates/newUser',

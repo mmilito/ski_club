@@ -25,6 +25,7 @@ body {
 }
 .navbar-header {
 	height: 90px;
+	z-index: -1;
 }
 .navbar-default {
 	background-color: #96a7b4;
@@ -32,7 +33,7 @@ body {
 	border-bottom: 3px solid #8b4513;
 }
 .under-navbar {
-	margin-top:55px;
+	margin-top:40px;
 	text-align: center;
 }
 .container-main {
@@ -75,19 +76,32 @@ body {
 	margin-top:13.5em;
 	text-align: center;*/
 }
-.home-btn {
-	/*position: fixed;*/
+.home-btn-admin-page {
 	vertical-align: right;
-	background: #96a7b4;
-
+	margin-top: -125px;
+	z-index: 2;
+	position: relative;
+	background: #D6E0EB;
+	border: 2px solid #8b4513;
+}
+.home-btn-bus {
+	vertical-align: right;
+	margin-top: -120px;
+	z-index: 2;
+	position: relative;
+	background: #D6E0EB;
+	border: 2px solid #8b4513;
 }
 .skiLevel {
 	height:22px;
 	font:1em;
 }
+.bus-header {
+	text-align: center;
+}
 .btn-bus {
 	position: absolute;
-	right: 20px;
+	right: 150px;
 	top:25px;
 	background-color: #f47a20;
 	border: 2px solid #8b4513;
