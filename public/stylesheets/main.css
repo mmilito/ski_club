@@ -2,12 +2,12 @@
 body {
 	background-image: url('/images/history2.jpg')
 }
-#main-header {
+#main-header .modal-header{
 	font-family: 'Oswald', sans-serif;
 }
 #eskimo-logo {
-	/*float: left;*/
-	position:absolute;
+	float: right;
+	/*position:absolute;*/
 }
 #tagline {
 	text-align: right;
@@ -17,15 +17,15 @@ body {
 	margin-right: -25px;
 }
 .navbar-header {
-	height: 7em;
+	height: 40px;
 }
 .navbar-default {
 	background-color: #96a7b4;
 	margin-bottom: 0;
-	border-bottom: 5px solid #8b4513;
+	border-bottom: 3px solid #8b4513;
 }
 .under-navbar {
-	margin-top:2em;
+	margin-top:55px;
 	text-align: center;
 }
 .container-main {
@@ -34,8 +34,12 @@ body {
 	padding-right: 15px;
 	padding-left: 15px;
 }
-.sort-tag {
+/*.table {
+	width: auto;
+}*/
+.sort-tag.tabletop {
 	color: #595959 ;
+	background-color: #96a7b4;
 }
 .background-white.container {
 	background-color: white;
@@ -52,13 +56,14 @@ body {
 	margin-top:13.5em;
 	text-align: center;*/
 }
-.right-btn {
-	float: right;
-	/*margin-right: 5em;*/
+.home-btn {
+	position: absolute;
+	right: 5px;
+	background-color: #96a7b4;
 }
 .skiLevel {
 	height:22px;
-	font:;
+	font:1em;
 }
 .btn-bus {
 	position: absolute;
@@ -66,8 +71,20 @@ body {
 	background-color: #f47a20;
 	border: 2px solid #8b4513;
 }
+.btn-close .btn-add {
+	background-color: peachpuff;
+}
 .modal-intake {
 	font-size: 20px;
+	width: 350px;
+	margin-left:45px;
+	margin-bottom:5px;
+}
+.tabletop {
+	background-color: #eeeceb;
+}
+.modal-header {
+	text-align: center;
 }
 
 

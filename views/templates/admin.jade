@@ -1,25 +1,26 @@
 //- extends layout
 div.container
 	div.background-white.container
-		h3.under-navbar ADMINISTRATION
-		button.home-btn.btn-warning.pull-right
-			a(href='#/' type="button") home
+		h4.under-navbar ADMINISTRATION
+		a.btn.btn-default.home-btn(type="button" href='#/') home
+		//- button.home-btn.btn-warning.pull-right.btn-default.btn-default
+		//- 	a(href='#/' type="button") home
 		div(ng-controller="adminController")
 			form(editable-form="" name="tableform" oncancel="cancel()")
 				table.table.table-striped.table-bordered.table-condensed
-					thead
+					thead.tabletop
 						tr
-							th.header First
-							th.header 
+							th.header.col-md-2 First
+							th.header.col-md-2 
 								a.sort-tag(href='' ng-click='predicate="name.last"; reverse=!reverse') Last
-							th.header
+							th.header.col-md-2
 								a.sort-tag(href='' ng-click='predicate="skiLevel"; reverse=!reverse') SKI level
-							th.header
+							th.header.col-md-2
 								a.sort-tag(href='' ng-click='predicate="sbLevel"; reverse=!reverse') SB level
-							th.header
+							th.header.col-md-1
 								a.sort-tag(href='' ng-click='predicate="age"; reverse=!reverse') Age
-							th.header DOB 
-							th.header 
+							th.header.col-md-1 DOB 
+							th.header.col-md-1 
 								span(ng-show="tableform.$visible") Action
 
 					tbody
@@ -43,8 +44,8 @@ div.container
 					div.btn-edit
 						button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
 					div.btn-form(ng-show="tableform.$visible")
-						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") close
-						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
+						button.btn.btn-default.btn-close(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") close
+						button.btn.btn-default.btn-add(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
 			
 			//- modal for adding new kid
 			script#addModalContent(type="text/ng-template")
@@ -58,6 +59,7 @@ div.container
 						input.modal-intake.last-name(ng-model="kid.name.last" type="text" placeholder="last name")
 						br
 						input.modal-intake.dob(type="date" ng-model="kid.dob" placeholder="dob")
+						br
 						input.modal-intake.street(type="text" ng-model="kid.address.street" placeholder="street address")
 						br
 						input.modal-intake.city(type="text" ng-model="kid.address.city" placeholder="city")
@@ -71,16 +73,12 @@ div.container
 						input.modal-intake.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder="emergency number")
 						br
 						select.modal-intake.busStop(type="text" ng-model="busStops")
-							option(ng-repeat="stop in busStops | orderBy:'stop' track by $index") {{stop.stop}}
+							option.modal-intake(ng-repeat="stop in busStops | orderBy:'stop' track by $index") {{stop.stop}}
 						br
-						input.modal-intake.skiLevel(type="text" ng-model="kid.skiLevel" placeholder="ski level")
-						br
-						input.modal-intake.sbLevel(type="text" ng-model="kid.sbLevel" placeholder="sb level")
-						br
-						label Active!
+						label.modal-intake Active!
 							input.modal-intake.checkbox.status(type="checkbox" ng-model="kid.active")
 						br
-						input.modal-intake.medical(type="text" ng-model="kid.medical" placeholder="medical info")
+						input.modal-intake.medical(type="textarea" ng-model="kid.medical" placeholder="medical info")
 
 					div.modal-footer
 						button.btn.btn-primary(type="submit") OK
