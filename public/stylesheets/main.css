@@ -42,9 +42,12 @@ body {
 	padding-right: 15px;
 	padding-left: 15px;
 }
-/*.table {
-	width: auto;
-}*/
+.thumbnail {
+	background-color: #96a7b4;
+}
+.age {
+	text-align: center;
+}
 .sort-tag.tabletop {
 	color: #595959 ;
 	background-color: #96a7b4;
@@ -53,15 +56,12 @@ body {
 	background-color: white;
 }
 .hero {
-/*	box-sizing: border-box;*/
-	/*background-color: white;*/
 	text-align: center;
 }
 .hero img {
 	width: 100%;
 	height: auto;
-/*	border: solid 2px white;
-*/}
+}
 .jumbotron {
 	/*background-image: url('/images/skischool.jpg');*/
 	/*background-repeat: no-repeat;*/
@@ -93,8 +93,8 @@ body {
 	border: 2px solid #8b4513;
 }
 .skiLevel {
-	height:22px;
-	font:1em;
+	height:50px;
+	font:24px;
 }
 .bus-header {
 	text-align: center;
@@ -106,8 +106,12 @@ body {
 	background-color: #f47a20;
 	border: 2px solid #8b4513;
 }
-.btn-close .btn-add {
-	background-color: peachpuff;
+.btn-ad-open {
+	border: 2px solid #8b4513;
+}
+.btn-del {
+	height: 20px;
+	padding: 0;
 }
 .modal-intake {
 	font-size: 20px;
@@ -124,5 +128,6 @@ body {
 .modal-header {
 	text-align: center;
 }
+
 
 

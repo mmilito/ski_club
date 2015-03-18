@@ -17,10 +17,10 @@ div.container
 								a.sort-tag(href='' ng-click='predicate="skiLevel"; reverse=!reverse') SKI level
 							th.header.col-md-2
 								a.sort-tag(href='' ng-click='predicate="sbLevel"; reverse=!reverse') SB level
-							th.header.col-md-1
+							th.header.col-md-1.age
 								a.sort-tag(href='' ng-click='predicate="age"; reverse=!reverse') Age
 							th.header.col-md-2 DOB 
-							th.header.col-md-1 
+							th.header.col-md-2 
 								span(ng-show="tableform.$visible") Action
 
 					tbody
@@ -40,12 +40,12 @@ div.container
 								span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob | date" e-form="tableform" e-ng-change="update(kid.id,this,'dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
 							td
 								span.glyphicon.glyphicon-pencil(ng-show="tableform.$visible" ng-click="openExisting(kid)")
-								button.btn.btn-warning.pull-right(type="button" ng-show="tableform.$visible" ng-click="delete(kid._id); deleteFromView(kid.id)") del
+								button.btn-del.btn.btn-warning.pull-right(type="button" ng-show="tableform.$visible" ng-click="delete(kid._id); deleteFromView(kid.id)") del
 					div.btn-edit
-						button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
+						button.btn-ad-open.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
 					div.btn-form(ng-show="tableform.$visible")
-						button.btn.btn-default.btn-close(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") close
-						button.btn.btn-default.btn-add(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
+						button.btn-ad-open.btn.btn-default.btn-close(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") close
+						button.btn-ad-open.btn.btn-default.btn-add.pull-right(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
 			
 			//- modal for adding new kid
 			script#addModalContent(type="text/ng-template")
