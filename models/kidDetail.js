@@ -41,9 +41,10 @@ kidSchema.virtual('name.full')
 	});
 kidSchema.virtual('category')
 	.get(function(){
-		if (this.skiLevel==="na"){
-			return('na');
-		} else if  (this.age>10 && this.skiLevel!=="na"){
+		// if (this.skiLevel==="na"){
+		// 	return('na');
+		// } else 
+		if  (this.age>10){
 			return('old');
 		} else {
 			return('ten');

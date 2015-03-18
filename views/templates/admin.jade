@@ -43,9 +43,8 @@ div.container
 					div.btn-edit
 						button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
 					div.btn-form(ng-show="tableform.$visible")
-						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") cancel
+						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()") close
 						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="openNew()") add new eskimo
-						button.btn.btn-default(ng-disabled="tableform.$waiting" ng-click="reloadRoute()") refresh
 			
 			//- modal for adding new kid
 			script#addModalContent(type="text/ng-template")
@@ -54,23 +53,34 @@ div.container
 
 				form.simple-form(novalidate ng-submit="$close(kid)")
 					div.modal-body
-						input.first-name(ng-model="kid.name.first" type="text" placeholder="first name")
-
-						input.last-name(ng-model="kid.name.last" type="text" placeholder="last name")
-
-						input.dob(type="date" ng-model="kid.dob" placeholder="dob")
-						input.street(type="text" ng-model="kid.address.street" placeholder="street address")
-						input.city(type="text" ng-model="kid.address.city" placeholder="city")
-						input.state(type="text" ng-model="kid.address.state" placeholder="CO")
-						input.zip(type="text" ng-model="kid.address.zip" placeholder="zip")
-						input.mainCell(type="text" ng-model="kid.phone.mainCell" placeholder="cell")
-						input.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder="emergency number")
-						select.busStop(type="text" ng-model="busStops")
+						input.modal-intake.first-name(ng-model="kid.name.first" type="text" placeholder="first name")
+						br
+						input.modal-intake.last-name(ng-model="kid.name.last" type="text" placeholder="last name")
+						br
+						input.modal-intake.dob(type="date" ng-model="kid.dob" placeholder="dob")
+						input.modal-intake.street(type="text" ng-model="kid.address.street" placeholder="street address")
+						br
+						input.modal-intake.city(type="text" ng-model="kid.address.city" placeholder="city")
+						br
+						input.modal-intake.state(type="text" ng-model="kid.address.state" placeholder="CO")
+						br
+						input.modal-intake.zip(type="text" ng-model="kid.address.zip" placeholder="zip")
+						br
+						input.modal-intake.mainCell(type="text" ng-model="kid.phone.mainCell" placeholder="cell")
+						br
+						input.modal-intake.emergCell(type="text" ng-model="kid.phone.emergCell" placeholder="emergency number")
+						br
+						select.modal-intake.busStop(type="text" ng-model="busStops")
 							option(ng-repeat="stop in busStops | orderBy:'stop' track by $index") {{stop.stop}}
-						input.skiLevel(type="text" ng-model="kid.skiLevel" placeholder="ski level")
-						input.sbLevel(type="text" ng-model="kid.sbLevel" placeholder="sb level")
-						input.checkbox.status(type="checkbox" ng-model="kid.active")
-						input.medical(type="text" ng-model="kid.medical" placeholder="medical info")
+						br
+						input.modal-intake.skiLevel(type="text" ng-model="kid.skiLevel" placeholder="ski level")
+						br
+						input.modal-intake.sbLevel(type="text" ng-model="kid.sbLevel" placeholder="sb level")
+						br
+						label Active!
+							input.modal-intake.checkbox.status(type="checkbox" ng-model="kid.active")
+						br
+						input.modal-intake.medical(type="text" ng-model="kid.medical" placeholder="medical info")
 
 					div.modal-footer
 						button.btn.btn-primary(type="submit") OK
