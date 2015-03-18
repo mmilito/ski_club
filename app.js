@@ -4,6 +4,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var _ = require('underscore');
 // db connection
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/skiClub');
 

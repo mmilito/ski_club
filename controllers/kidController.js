@@ -25,7 +25,8 @@ var kidController = {
 	},
 
 	findOneKid: function(req,res){
-		var id=req.id;
+		var id=req.body.id;
+		console.log('server',req.body);
 		KidDetail.findById((id),function(err,results){
 			if(err){console.log(err);}
 			res.send(results);

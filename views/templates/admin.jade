@@ -19,7 +19,7 @@ div.container
 								a.sort-tag(href='' ng-click='predicate="sbLevel"; reverse=!reverse') SB level
 							th.header.col-md-1
 								a.sort-tag(href='' ng-click='predicate="age"; reverse=!reverse') Age
-							th.header.col-md-1 DOB 
+							th.header.col-md-2 DOB 
 							th.header.col-md-1 
 								span(ng-show="tableform.$visible") Action
 
@@ -39,7 +39,7 @@ div.container
 							td.edit.dob
 								span.ng-scope.ng-binding.editable(ng-click="tableform.$show()" editable-text="kid.dob | date" e-form="tableform" e-ng-change="update(kid.id,this,'dob',kid.dob)" e-ng-model-options="{updateOn:'blur'}") {{kid.dob | date}}
 							td
-								span.glyphicon.glyphicon-pencil(ng-show="tableform.$visible" ng-click="openExisting(kid.id)")
+								span.glyphicon.glyphicon-pencil(ng-show="tableform.$visible" ng-click="openExisting(kid)")
 								button.btn.btn-warning.pull-right(type="button" ng-show="tableform.$visible" ng-click="delete(kid._id); deleteFromView(kid.id)") del
 					div.btn-edit
 						button.btn.btn-default(type="button" ng-show="!tableform.$visible" ng-click="tableform.$show()") edit
@@ -91,7 +91,7 @@ div.container
 
 				form.simple-form(novalidate ng-submit="$close(kid.id)")
 					div.modal-body
-						input.first-name(ng-model="kid.name.first" type="text" placeholder="first name")
+						p.first-name(type="text" ng-model="kid.name.first" placeholder="first name") {{kid.name.first}}
 						//- input.last-name(ng-model="kid.name.last" type="text" placeholder={{kid.name.last}})
 						//- input.dob(type="date" ng-model="kid.dob" placeholder={{"kid.dob"}})
 						//- input.street(type="text" ng-model="kid.address.street" placeholder={{kid.address.street}})

@@ -63,7 +63,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 	$scope.predicate='name.last';  // default sort by last name
 
 	$scope.levels=LevelList.detail;
-	$scope.oneKid=KidDetail.findOneKid;
+	//$scope.oneKid=null;
 
 	$scope.reloadRoute=function(){
 		// cancel edit mode and re-enter edit mode
@@ -95,29 +95,30 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 	};
 
 	//UPDATE KID via modal; complete data
+	$scope.openExisting=function (selectedKid) {
+		//console.log('here', selectedKid);
+		var temp=[];
+		temp.push(selectedKid);
+		var temp2= _.pluck(temp,'_id');
 
-	// $scope.openExisting=function (id) {
-	// 	console.log('here', id);
-	// 	var modalInstance=$modal.open({
-	// 		templateUrl: 'updateModalContent',
-	// 		controller: 'adminController',
-	// 		//size: size,
-	// 		resolve: {
-	// 			kids: function () {
-	// 			return $scope.kids;
-	// 		}
-	// 	}
-	// });
+		var modalInstance=$modal.open({
+			templateUrl: 'updateModalContent',
+			controller: 'adminController',
+			//size: size,
+			resolve: temp2
+		});
+	};
 
-	// 	modalInstance.result.then(function (id) {
-	// 		console.log('ID',id);
-	// 		$scope.selected2=function(){
-	// 			var temp=(KidDetail.findOneKid(id));
-	// 			console.log(temp);
-	// 			return temp;
-	// 		};
-	// 	}); 
-	// };
+		// modalInstance.result.then(function (id) {
+		// 	console.log('ID',id);
+		// 	$scope.selected2=function(){
+		// 		var temp=(KidDetail.findOneKid(id));
+		// 		console.log(temp);
+		// 		return temp;
+		// 	};
+		// }); 
+	//});
+	//console.log($scope.openExisting);
 
 // 	// delete selected kid; MUST have put route in app.js and delete method in factory
 // 	// method:true property is flag to trigger logic in kidController.js tells delete not update
