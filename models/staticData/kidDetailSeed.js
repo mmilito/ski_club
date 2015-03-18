@@ -68,8 +68,8 @@ if (KidDetail.find({})<1){
 // fake kid data #3
 	var kidSeed3 = new KidDetail({
 		name:{
-			first: 'Ondablock',
-			last: 'Newkid'
+			first: 'Newkid',
+			last: 'Ondablock'
 		},
 		dob: '10/2/2006',
 		address: {

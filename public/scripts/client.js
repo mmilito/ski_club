@@ -29,10 +29,15 @@ eskimoApp.factory('KidDetail', function($resource){
 			method: 'PUT'
 		}}
 	);
-	return{
+	var data={
 		model: eskimos,
 		detail: eskimos.query()
 	};
+	data.update=function(){
+		data.detail=eskimos.query();
+		return data.detail;
+	};
+	return data;
 });
 
 eskimoApp.factory('LevelList', function($resource){
@@ -53,7 +58,7 @@ eskimoApp.controller('homeController',function(){});
 
 
 // kid detail controller
-eskimoApp.controller('adminController',function($scope, $modal, $routeParams, KidDetail, LevelList){
+eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $filter, KidDetail, LevelList){
 	$scope.kids=KidDetail.detail;
 	$scope.predicate='name.last';  // default sort by last name
 
@@ -84,6 +89,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 			var tempKid=new KidDetail.model(selectedKid);
 			tempKid.$save(function(savedKid){
 			var modelKid=new KidDetail.model(savedKid);
+			KidDetail.detail.push(modelKid);
 			});
 		}); 
 	};
@@ -118,9 +124,19 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 		$scope.delete=function(id){
 			KidDetail.model.update({id:id, method:true}, function(err,results){
 				if(err){console.log(err);}
-				scope.$apply();
-				return(results);
+	
 			});		
+		};
+
+		$scope.filterUser=function(kid){
+			return kid.isDeleted !== true;
+		};
+
+		$scope.deleteFromView=function(id){
+			var filtered=$filter('filter')($scope.kids,{id:id});
+			if(filtered.length){
+				filtered[0].isDeleted=true;
+			}
 		};
 
 // 	// update selected kid INLINE - no modal; running to same endpoint as delete w/o delete flag
@@ -147,7 +163,6 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, Ki
 			{stop:'Hampden & Happy Canyon'},
 			{stop:'Quebec & County Line'},
 			{stop:'SouthGlenn'},
-			{stop:'Hampden & Happy Canyon'},
 			{stop:'Ken Caryl & 470'},
 			{stop:'Calvary Temple'},
 			{stop:'8th & Youngfield'},

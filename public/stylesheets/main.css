@@ -1,17 +1,70 @@
 /*MAIN CSS STYLESHEET*/
+body {
+	background-image: url('/images/history2.jpg')
+}
 #main-header {
-	float: right;
+	font-family: 'Oswald', sans-serif;
 }
 #eskimo-logo {
-	float: left;
+	/*float: left;*/
+	position:absolute;
+}
+#tagline {
+	text-align: right;
+	font-family: 'Oswald', sans-serif;
+	font-size: 1em;
+	width: 350px;
+	margin-right: -25px;
 }
 .navbar-header {
 	height: 7em;
 }
 .navbar-default {
 	background-color: #96a7b4;
+	margin-bottom: 0;
+	border-bottom: 5px solid #8b4513;
+}
+.under-navbar {
+	margin-top:2em;
+	text-align: center;
+}
+.container-main {
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 15px;
+	padding-left: 15px;
 }
 .sort-tag {
 	color: #595959 ;
 }
+.background-white.container {
+	background-color: white;
+}
+.jumbotron {
+	background-image: url('/images/skischool.jpg');
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 450px;
+	background-position: center
+}
+/*.overlay {
+	font-family:  'Oswald', sans-serif;
+	margin-top:13.5em;
+	text-align: center;*/
+}
+.right-btn {
+	float: right;
+	/*margin-right: 5em;*/
+}
+.skiLevel {
+	height:22px;
+	font:;
+}
+.btn-bus {
+	position: absolute;
+	right: 10px;
+	background-color: #f47a20;
+	border: 2px solid #8b4513;
+}
+
 
