@@ -122,20 +122,9 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 				}
 			}
 		});
-		console.log($scope.oneKid);
+		//console.log($scope.oneKid);
 	};
 
-
-		// modalInstance.result.then(function (id) {
-		// 	console.log('ID',id);
-		// 	$scope.selected2=function(){
-		// 		var temp=(KidDetail.findOneKid(id));
-		// 		console.log(temp);
-		// 		return temp;
-		// 	};
-		// }); 
-	//});
-	//console.log($scope.openExisting);
 
 // 	// delete selected kid; MUST have put route in app.js and delete method in factory
 // 	// method:true property is flag to trigger logic in kidController.js tells delete not update
@@ -169,10 +158,6 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 
 		};
 
-		// $scope.changeLevels=function(id){
-		// 	console.log('front end',id);
-		// 	//KidDetail.changeLevels(id);
-		// };
 
 		$scope.busStops=[
 			{stop:'Parker'},
