@@ -194,7 +194,7 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 			{color:'blue',label:'blue'},
 			{color:'half-red',label:'blue'},
 			{color:'red',label:'red'},
-			{color:'half-maroon',label:'red'},
+			{color:'half-maroon',label:'half-maroon'},
 			{color:'maroon',label:'maroon'},
 			{color:'half-white',label:'half-white'},
 			{color:'white',label:'white'},
