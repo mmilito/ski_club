@@ -104,20 +104,27 @@ eskimoApp.controller('adminController',function($scope, $modal, $routeParams, $f
 		var temp=[];
 		temp.push(selectedKid);
 		var temp2= _.pluck(temp,'_id');
-		console.log('sk',selectedKid);
+		//console.log('sk',selectedKid);
 		var temp3=_.find($scope.kids,function(obj){
 			//console.log('typeof1',typeof obj._id);
 			//console.log('typeof2',typeof temp2);
 			return obj._id===selectedKid._id;
 		});
-		console.log('temp3',temp3);
+		//console.log('temp3',temp3);
 		var modalInstance=$modal.open({
 			templateUrl: 'updateModalContent',
 			controller: 'adminController',
 			//size: size,
-			resolve: $scope.temp3
+			resolve: {
+				oneKid: function(){
+					$scope.oneKid=temp3;
+					return $scope.oneKid;
+				}
+			}
 		});
+		console.log($scope.oneKid);
 	};
+
 
 		// modalInstance.result.then(function (id) {
 		// 	console.log('ID',id);

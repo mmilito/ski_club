@@ -44,6 +44,8 @@ body {
 }
 .thumbnail {
 	background-color: #96a7b4;
+	z-index: 2;
+	margin-top: -50px;
 }
 .age {
 	text-align: center;
@@ -61,6 +63,7 @@ body {
 .hero img {
 	width: 100%;
 	height: auto;
+	z-index: -1;
 }
 .jumbotron {
 	/*background-image: url('/images/skischool.jpg');*/
@@ -127,6 +130,10 @@ body {
 }
 .modal-header {
 	text-align: center;
+}
+.shield.img {
+	height: 150px;
+	width: 100px;
 }
 
 
