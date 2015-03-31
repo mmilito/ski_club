@@ -13,3 +13,5 @@ Midterm is in a separate folder (named midterm) and just addresses objective num
 Let me know if you're interested in seeing more and I can show off the Heroku site ... :)
 
 - Mariel
+- 970-531-3341
+- mdmilito@yahoo.com
